@@ -22,9 +22,9 @@ class SceneComponent extends React.Component {
     super(props);
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   return !nextProps.sliderBusy;
-  // }
+  shouldComponentUpdate(nextProps, nextState){
+    return !nextProps.sliderBusy;
+  }
 
   componentWillReceiveProps(){
   }
@@ -34,7 +34,7 @@ class SceneComponent extends React.Component {
   }
 
   render() {
-    //console.log('Threejs render scene');
+    console.log('scene', this.props.children);
 
     let scene = (
 

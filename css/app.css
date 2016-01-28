@@ -7,29 +7,10 @@ body {
   background-color: #eee;
 }
 #controls{
-  /*position: absolute;*/
+  position: absolute;
   background-color: #fff;
   padding: 10px;
   padding-bottom: 5px;
-}
-#message{
-  margin: 10px 15px;
-  font-size: 12px;
-  font-family: monospace;
-  float: left;
-}
-#parsetime{
-  margin: 10px 15px;
-  font-size: 12px;
-  font-family: monospace;
-  float: right;
-}
-#fileSelect{
-  padding: 4px;
-}
-#input{
-  width: 100%;
-  text-align: center;
 }
 .hidden{
   display: none;
@@ -38,21 +19,6 @@ body {
   position: absolute;
   top:0;
   right: 0;
-}
-input[type='button']{
-  font-family: monospace;
-  font-size: 12px;
-}
-#checkbox{
-  margin-top: 10px;
-  height: 20px;
-}
-#checkbox label{
-  width: 100px;
-}
-#checkbox div{
-  float: left;
-  margin-right: 20px;
 }
 #sliders{
   margin-top: 10px;

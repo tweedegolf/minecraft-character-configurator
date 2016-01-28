@@ -3,45 +3,66 @@ import ActionTypes from '../constants';
 
 export default {
 
-  setModelScale(e) {
+  setHeadSize(e) {
     AppDispatcher.dispatch({
-      type: ActionTypes.MODEL_SCALE,
-      modelScale: e.target.valueAsNumber
+      type: ActionTypes.HEAD_SIZE,
+      value: e.target.valueAsNumber
     });
   },
 
-  setGridSize(e) {
+  setBodyWidth(e) {
     AppDispatcher.dispatch({
-      type: ActionTypes.GRID_SIZE,
-      gridSize: e.target.valueAsNumber
+      type: ActionTypes.BODY_WIDTH,
+      value: e.target.valueAsNumber
     });
   },
 
-  setNumberOfModels(e) {
+  setBodyHeight(e) {
     AppDispatcher.dispatch({
-      type: ActionTypes.NUMBER_OF_MODELS,
-      numberOfModels: e.target.valueAsNumber
+      type: ActionTypes.BODY_HEIGHT,
+      value: e.target.valueAsNumber
     });
   },
 
-  mergeGeometries(e) {
+  setBodyDepth(e) {
     AppDispatcher.dispatch({
-      type: ActionTypes.MERGE_GEOMETRIES,
-      mergeGeometries: e.target.checked
+      type: ActionTypes.BODY_DEPTH,
+      value: e.target.valueAsNumber
     });
   },
 
-  examineModel(e) {
+  setLegSize(e) {
     AppDispatcher.dispatch({
-      type: ActionTypes.EXAMINE_MODEL,
-      examineModel: e.target.checked
+      type: ActionTypes.LEG_SIZE,
+      value: e.target.valueAsNumber
+    });
+  },
+
+  setLegLength(e) {
+    AppDispatcher.dispatch({
+      type: ActionTypes.LEG_LENGTH,
+      value: e.target.valueAsNumber
+    });
+  },
+
+  setArmSize(e) {
+    AppDispatcher.dispatch({
+      type: ActionTypes.ARM_SIZE,
+      value: e.target.valueAsNumber
+    });
+  },
+
+  setArmLength(e) {
+    AppDispatcher.dispatch({
+      type: ActionTypes.ARM_LENGTH,
+      value: e.target.valueAsNumber
     });
   },
 
   setSliderBusy(e) {
     AppDispatcher.dispatch({
       type: ActionTypes.SLIDER_BUSY,
-      sliderBusy: e.nativeEvent.type === 'mousedown'
+      value: e.nativeEvent.type === 'mousedown'
     });
   }
 };

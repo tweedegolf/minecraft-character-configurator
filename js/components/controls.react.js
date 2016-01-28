@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactSlider from './slider.react';
-import UploadButton from './upload_button.react.js';
 import SettingsAction from '../actions/settings_action';
-import ModelsAction from '../actions/models_action';
-
 
 class Controls extends React.Component{
 
@@ -31,70 +28,42 @@ class Controls extends React.Component{
   render(){
     return(
       <div id="controls">
-
-        <UploadButton
-          buttonLabel="browse"
-          label="Drag and drop 3D model onto this window or "
-          onBrowse={ModelsAction.browse}
-          onDragAndDrop={ModelsAction.dragAndDrop}
-        />
-
-        <div id="checkbox">
-          <div>
-            <label>Merge geometries </label>
-            <input
-              onChange={SettingsAction.mergeGeometries}
-              type="checkbox">
-            </input>
-            </div>
-          <div>
-            <label>Examine model </label>
-            <input
-              onChange={SettingsAction.examineModel}
-              type="checkbox">
-            </input>
-          </div>
-        </div>
-
         <div id="sliders">
           <ReactSlider
             onMouseDown={SettingsAction.setSliderBusy}
             onMouseUp={SettingsAction.setSliderBusy}
-            onChange={SettingsAction.setModelScale}
-            min={0.05} max={10} step={0.05}
-            value={this.props.scale}
-            label="Model scale: "
+            onChange={SettingsAction.setHeadSize}
+            min={1} max={100} step={1}
+            value={this.props.headSize}
+            label="head size: "
           />
           <ReactSlider
             onMouseDown={SettingsAction.setSliderBusy}
             onMouseUp={SettingsAction.setSliderBusy}
-            onChange={SettingsAction.setGridSize}
-            min={1} max={10} step={0.5}
-            value={this.props.gridSize}
-            label="Grid size: "
+            onChange={SettingsAction.setLegLength}
+            min={1} max={100} step={1}
+            value={this.props.legLength}
+            label="leg length: "
           />
           <ReactSlider
             onMouseDown={SettingsAction.setSliderBusy}
             onMouseUp={SettingsAction.setSliderBusy}
-            onChange={SettingsAction.setNumberOfModels}
-            min={1} max={this.props.maxNumberOfModels} step={1}
-            value={this.props.numberOfModels}
-            label="Number of models: "
+            onChange={SettingsAction.setArmLength}
+            min={1} max={100} step={1}
+            value={this.props.armLength}
+            label="arm length: "
           />
         </div>
-
-        <div id="message"></div>
-        <div id="parsetime"></div>
       </div>
     );
   }
 }
 
 Controls.propTypes = {
-  gridSize: React.PropTypes.number,
-  maxNumberOfModels: React.PropTypes.number,
-  numberOfModels: React.PropTypes.number,
-  scale: React.PropTypes.number
+  // gridSize: React.PropTypes.number,
+  // maxNumberOfModels: React.PropTypes.number,
+  // numberOfModels: React.PropTypes.number,
+  // scale: React.PropTypes.number
 };
 
 export default Controls;
