@@ -14,7 +14,6 @@ class App extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {};
     this.state = SettingsStore.getSettings();
     this.onChangeListener = this.onChange.bind(this);
   }
@@ -39,19 +38,26 @@ class App extends React.Component{
       <div>
         <Controls
           headSize={this.state.headSize}
+          bodyWidth={this.state.bodyWidth}
+          bodyHeight={this.state.bodyHeight}
+          bodyDepth={this.state.bodyDepth}
           armLength={this.state.armLength}
+          armSize={this.state.armSize}
           legLength={this.state.legLength}
+          legSize={this.state.legSize}
         />
         <Scene3D
-          //worldRotation={this.state.worldRotation}
           sliderBusy={this.state.sliderBusy}
+          cameraPosition={this.state.cameraPosition}
+          cameraQuaternion={this.state.cameraQuaternion}
         >
           <World
             position={new THREE.Vector3(0, 0, 0)}
+            worldRotation={this.state.worldRotation}
           >
             <Minecraft
               position={new THREE.Vector3(0, 0, 0)}
-              //quaternion={new THREE.Quaternion()}
+              quaternion={new THREE.Quaternion()}
               scale={1}
               config={this.state.config}
             />
@@ -64,6 +70,4 @@ class App extends React.Component{
 
 App.propTypes = {};
 
-
 export default App;
-

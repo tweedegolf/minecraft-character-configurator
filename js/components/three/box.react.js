@@ -17,8 +17,8 @@ class Box extends React.Component {
 
     return (
       <Mesh
-        key={THREE.Math.generateUUID()}
         geometry={new THREE.BoxGeometry(this.props.size.x, this.props.size.y, this.props.size.z)}
+        key={THREE.Math.generateUUID()}
         material={new THREE.MeshBasicMaterial({color: this.props.color})}
         position={new THREE.Vector3(this.props.position.x, this.props.position.y, this.props.position.z)}
       />
@@ -27,9 +27,9 @@ class Box extends React.Component {
 }
 
 Box.propTypes = {
-  // position: React.PropTypes.instanceOf(THREE.Vector3),
-  // quaternion: React.PropTypes.instanceOf(THREE.Quaternion),
-  // scale: React.PropTypes.number
+  color: React.PropTypes.number,
+  position: React.PropTypes.instanceOf(Object),
+  size: React.PropTypes.instanceOf(Object)
 };
 
 export default Box;

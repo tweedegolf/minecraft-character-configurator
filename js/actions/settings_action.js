@@ -64,5 +64,13 @@ export default {
       type: ActionTypes.SLIDER_BUSY,
       value: e.nativeEvent.type === 'mousedown'
     });
+  },
+
+  updateCamera(e){
+    AppDispatcher.dispatch({
+      type: ActionTypes.UPDATE_CAMERA,
+      position: e.position,
+      quaternion: e.quaternion
+    });
   }
 };

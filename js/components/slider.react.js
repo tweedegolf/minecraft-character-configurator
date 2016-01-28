@@ -1,15 +1,15 @@
 import React from 'react';
 
 let labelStyle = {
-  width: '200px',
+  width: '140px',
+  height: '1.9em',
   display: 'inline-block'
 };
 
 let inputStyle = {
   verticalAlign: 'middle',
-  width: '70%',
-  marginTop: '15px',
-  marginBottom: '15px'
+  //marginBottom: '5px',
+  width: '200px'
 };
 
 /* React wrapper for input type Range */
@@ -20,13 +20,16 @@ class Slider extends React.Component{
 
   render(){
     let value = this.props.value;
-    let label = value;
-    if(this.props.label){
-      label = this.props.label + value;
+    function createLabel(props){
+      let label = value;
+      if(props.label){
+        label = props.label + '<em>' + value + '</em>';
+      }
+      return {__html: label};
     }
     return (
       <div>
-        <label htmlFor={this.props.id} style={labelStyle}>{label}</label>
+        <label htmlFor={this.props.id} style={labelStyle} dangerouslySetInnerHTML={createLabel(this.props)} />
         <input
           style={inputStyle}
           onMouseUp={this.props.onMouseUp}

@@ -37,13 +37,39 @@ class Controls extends React.Component{
             value={this.props.headSize}
             label="head size: "
           />
+
           <ReactSlider
             onMouseDown={SettingsAction.setSliderBusy}
             onMouseUp={SettingsAction.setSliderBusy}
-            onChange={SettingsAction.setLegLength}
+            onChange={SettingsAction.setBodyWidth}
             min={1} max={100} step={1}
-            value={this.props.legLength}
-            label="leg length: "
+            value={this.props.bodyWidth}
+            label="body width: "
+          />
+          <ReactSlider
+            onMouseDown={SettingsAction.setSliderBusy}
+            onMouseUp={SettingsAction.setSliderBusy}
+            onChange={SettingsAction.setBodyHeight}
+            min={1} max={100} step={1}
+            value={this.props.bodyHeight}
+            label="body height: "
+          />
+          <ReactSlider
+            onMouseDown={SettingsAction.setSliderBusy}
+            onMouseUp={SettingsAction.setSliderBusy}
+            onChange={SettingsAction.setBodyDepth}
+            min={1} max={100} step={1}
+            value={this.props.bodyDepth}
+            label="body depth: "
+          />
+
+          <ReactSlider
+            onMouseDown={SettingsAction.setSliderBusy}
+            onMouseUp={SettingsAction.setSliderBusy}
+            onChange={SettingsAction.setArmSize}
+            min={1} max={50} step={1}
+            value={this.props.armSize}
+            label="arm size: "
           />
           <ReactSlider
             onMouseDown={SettingsAction.setSliderBusy}
@@ -53,6 +79,23 @@ class Controls extends React.Component{
             value={this.props.armLength}
             label="arm length: "
           />
+
+          <ReactSlider
+            onMouseDown={SettingsAction.setSliderBusy}
+            onMouseUp={SettingsAction.setSliderBusy}
+            onChange={SettingsAction.setLegSize}
+            min={1} max={50} step={1}
+            value={this.props.legSize}
+            label="leg size: "
+          />
+          <ReactSlider
+            onMouseDown={SettingsAction.setSliderBusy}
+            onMouseUp={SettingsAction.setSliderBusy}
+            onChange={SettingsAction.setLegLength}
+            min={1} max={100} step={1}
+            value={this.props.legLength}
+            label="leg length: "
+          />
         </div>
       </div>
     );
@@ -60,10 +103,14 @@ class Controls extends React.Component{
 }
 
 Controls.propTypes = {
-  // gridSize: React.PropTypes.number,
-  // maxNumberOfModels: React.PropTypes.number,
-  // numberOfModels: React.PropTypes.number,
-  // scale: React.PropTypes.number
+  headSize: React.PropTypes.number,
+  bodyWidth: React.PropTypes.number,
+  bodyHeight: React.PropTypes.number,
+  bodyDepth: React.PropTypes.number,
+  armSize: React.PropTypes.number,
+  armLength: React.PropTypes.number,
+  legSize: React.PropTypes.number,
+  legLength: React.PropTypes.number
 };
 
 export default Controls;

@@ -11,23 +11,15 @@ body {
   background-color: #fff;
   padding: 10px;
   padding-bottom: 5px;
-}
-.hidden{
-  display: none;
+  bottom: 0;
 }
 #stats{
   position: absolute;
   top:0;
   right: 0;
 }
-#sliders{
-  margin-top: 10px;
-}
 .slider{
   margin-bottom: 4px;
-}
-#numbermodels{
-  width: calc(100% - 400px);
 }
 input[type='range']{
   user-select: none;
@@ -35,4 +27,7 @@ input[type='range']{
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+}
+em{
+  font-weight: bold;
 }

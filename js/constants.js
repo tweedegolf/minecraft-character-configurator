@@ -1,6 +1,7 @@
 export default {
 
   SLIDER_BUSY: Symbol(),
+  UPDATE_CAMERA: Symbol(),
   HEAD_SIZE: Symbol(),
   BODY_WIDTH: Symbol(),
   BODY_HEIGHT: Symbol(),

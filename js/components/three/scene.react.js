@@ -1,7 +1,9 @@
+import THREE from 'three';
 import React from 'react';
+import ReactDOM from 'react-dom';
 //import ReactTHREE from 'react-three';
 import ReactTHREE from '../../../lib/react-three-commonjs';
-import THREE from 'three';
+import SettingsAction from '../../actions/settings_action';
 import OrbitControls from '../../../lib/OrbitControls';
 import World from './world.react';
 import Minecraft from './minecraft.react';
@@ -20,6 +22,8 @@ class SceneComponent extends React.Component {
 
   constructor(props) {
     super(props);
+    this._cameraPosition = this.props.cameraPosition;
+    this._cameraQuaternion = this.props.cameraQuaternion;
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -29,16 +33,30 @@ class SceneComponent extends React.Component {
   componentWillReceiveProps(){
   }
 
+  componentDidMount(){
+    this._canvas = ReactDOM.findDOMNode(this.refs.scene);
+    this._canvasListener = () => {
+      SettingsAction.updateCamera({
+        position: this._cameraPosition,
+        quaternion: this._cameraQuaternion
+      });
+    };
+    this._canvas.addEventListener('mouseup', this._canvasListener, false);
+  }
+
+  componentWillUnmount(){
+    this._canvas.removeEventListener('mouseup', this._canvasListener, false);
+  }
+
   _onControllerChange(e){
-    console.log(e);
+    this._cameraPosition = e.target.lastPosition;
+    this._cameraQuaternion = e.target.lastQuaternion;
   }
 
   render() {
-    console.log('scene', this.props.children);
-
     let scene = (
-
       <Scene
+        //key={THREE.Math.generateUUID()}
         ref="scene"
         width={window.innerWidth}
         height={window.innerHeight}
@@ -51,7 +69,7 @@ class SceneComponent extends React.Component {
         enableRapidRender={false}
         orbitControls={THREE.OrbitControls}
         background={0xffffff}
-        onControllerChange = {this._onControllerChange}
+        onControllerChange = {this._onControllerChange.bind(this)}
       >
         <Camera
           aspect={window.innerWidth / window.innerHeight}
@@ -60,7 +78,8 @@ class SceneComponent extends React.Component {
           lookat={new THREE.Vector3(0, 0, 0)}
           name={'camera'}
           near={1}
-          position={new THREE.Vector3(0, 300, 500)}
+          position={this.props.cameraPosition}
+          quaternion={this.props.cameraQuaternion}
         />
         <AmbientLight
           color={new THREE.Color(0x333333)}
@@ -75,7 +94,6 @@ class SceneComponent extends React.Component {
         {this.props.children}
       </Scene>
     );
-    //console.log(this.refs.scene);
     return scene;
   }
 }

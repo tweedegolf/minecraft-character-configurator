@@ -29,7 +29,7 @@
   "scripts": {
     "start": "ws",
     "watch": "watchify lib/* js/app.js -t [babelify --presets [ es2015 react] --plugins [ transform-class-properties ] ] -o build/app.js --debug --verbose",
-    "build": "browserify js/app.js -t [ babelify --presets [ es2015 react stage-1] --sourceMapRelative ./src ] --debug | exorcist build/app.js.map > build/app.js",
+    "build": "browserify js/app.js -t [ babelify --presets [ es2015 react stage-1] ] --debug | exorcist build/app.js.map > build/app.js",
     "build1": "browserify js/app.js -t [ babelify --presets [ es2015 react stage-1] ] | exorcist app.js.map > build/app.js",
     "build2": "browserify js/app.js -t [ babelify --presets [ es2015 react stage-1] ] | uglifyjs -c > build/app.js"
   }
