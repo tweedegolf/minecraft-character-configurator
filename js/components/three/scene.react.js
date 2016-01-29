@@ -1,12 +1,9 @@
 import THREE from 'three';
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import ReactTHREE from 'react-three';
-import ReactTHREE from '../../../lib/react-three-commonjs';
+import ReactTHREE from 'react-three';
 import SettingsAction from '../../actions/settings_action';
 import OrbitControls from '../../../lib/OrbitControls';
-import World from './world.react';
-import Minecraft from './minecraft.react';
 
 
 let Scene = ReactTHREE.Scene;
@@ -22,8 +19,6 @@ class SceneComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this._cameraPosition = this.props.cameraPosition;
-    this._cameraQuaternion = this.props.cameraQuaternion;
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -34,29 +29,26 @@ class SceneComponent extends React.Component {
   }
 
   componentDidMount(){
-    this._canvas = ReactDOM.findDOMNode(this.refs.scene);
-    this._canvasListener = () => {
-      SettingsAction.updateCamera({
-        position: this._cameraPosition,
-        quaternion: this._cameraQuaternion
-      });
-    };
-    this._canvas.addEventListener('mouseup', this._canvasListener, false);
+    let canvas = ReactDOM.findDOMNode(this.refs.scene);
+    let camera = this.refs.camera;
+    this._orbitControls = new THREE.OrbitControls(camera, canvas);
+    this._orbitControls.addEventListener('change', this._onControllerChange, false);
   }
 
   componentWillUnmount(){
-    this._canvas.removeEventListener('mouseup', this._canvasListener, false);
+    this._orbitControls.removeEventListener('change', this._onControllerChange, false);
   }
 
   _onControllerChange(e){
-    this._cameraPosition = e.target.lastPosition;
-    this._cameraQuaternion = e.target.lastQuaternion;
+    SettingsAction.updateCamera({
+      position: e.target.lastPosition,
+      quaternion: e.target.lastQuaternion
+    });
   }
 
   render() {
     let scene = (
       <Scene
-        //key={THREE.Math.generateUUID()}
         ref="scene"
         width={window.innerWidth}
         height={window.innerHeight}
@@ -67,11 +59,10 @@ class SceneComponent extends React.Component {
         shadowMapEnabled={true}
         shadowMapSoft={true}
         enableRapidRender={false}
-        orbitControls={THREE.OrbitControls}
         background={0xffffff}
-        onControllerChange = {this._onControllerChange.bind(this)}
       >
         <Camera
+          ref="camera"
           aspect={window.innerWidth / window.innerHeight}
           far={1000}
           fov={50}

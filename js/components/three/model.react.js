@@ -1,7 +1,6 @@
-import React from 'react';
-//import ReactTHREE from 'react-three';
-import ReactTHREE from '../../../lib/react-three-commonjs';
 import THREE from 'three';
+import React from 'react';
+import ReactTHREE from 'react-three';
 
 let Mesh = ReactTHREE.Mesh;
 let Object3D = ReactTHREE.Object3D;

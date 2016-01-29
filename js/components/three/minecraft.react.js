@@ -1,7 +1,6 @@
 import THREE from 'three';
 import React from 'react';
-//import ReactTHREE from 'react-three';
-import ReactTHREE from '../../../lib/react-three-commonjs';
+import ReactTHREE from 'react-three';
 import Box from './box.react';
 
 let Object3D = ReactTHREE.Object3D;
