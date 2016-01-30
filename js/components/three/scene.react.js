@@ -19,6 +19,7 @@ class SceneComponent extends React.Component {
 
   constructor(props) {
     super(props);
+    this._orbitControllerHandler = this._onControllerChange.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -30,19 +31,20 @@ class SceneComponent extends React.Component {
 
   componentDidMount(){
     let canvas = ReactDOM.findDOMNode(this.refs.scene);
-    let camera = this.refs.camera;
-    this._orbitControls = new THREE.OrbitControls(camera, canvas);
-    this._orbitControls.addEventListener('change', this._onControllerChange, false);
+    this._camera = this.refs.camera;
+    this._orbitControls = new THREE.OrbitControls(this._camera, canvas);
+    this._orbitControls.addEventListener('change', this._orbitControllerHandler, false);
   }
 
   componentWillUnmount(){
-    this._orbitControls.removeEventListener('change', this._onControllerChange, false);
+    this._orbitControls.removeEventListener('change', this._orbitControllerHandler, false);
   }
 
   _onControllerChange(e){
+    console.log(e);
     SettingsAction.updateCamera({
-      position: e.target.lastPosition,
-      quaternion: e.target.lastQuaternion
+      position: this._camera.position,
+      quaternion: this._camera.quaternion
     });
   }
 
