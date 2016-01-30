@@ -16,7 +16,7 @@ class SceneComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this._orbitControlsHandler = this._onControllerChange.bind(this);
+    this._mouseUpListener = this._onMouseUp.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -27,17 +27,18 @@ class SceneComponent extends React.Component {
   }
 
   componentDidMount(){
-    let canvas = ReactDOM.findDOMNode(this.refs.scene);
+    this._canvas = ReactDOM.findDOMNode(this.refs.react3);
     this._camera = this.refs.camera;
-    this._orbitControls = new THREE.OrbitControls(this._camera, canvas);
-    //this._orbitControls.addEventListener('change', this._orbitControlsHandler, false);
+    this._canvas.addEventListener('mouseup', this._mouseUpListener, false);
+    this._controls = new THREE.OrbitControls(this._camera, this._canvas);
   }
 
   componentWillUnmount(){
-    //this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false);
+    this._canvas.removeEventListener('mouseup', this._mouseUpListener, false);
+    this._controls.dispose();
   }
 
-  _onControllerChange(e){
+  _onMouseUp(e){
     SettingsAction.updateCamera({
       position: this._camera.position,
       quaternion: this._camera.quaternion
@@ -47,7 +48,7 @@ class SceneComponent extends React.Component {
   render() {
     let scene = (
       <React3
-        ref="scene"
+        ref="react3"
         mainCamera="camera"
         width={window.innerWidth}
         height={window.innerHeight}
@@ -55,13 +56,15 @@ class SceneComponent extends React.Component {
         shadowMapEnabled={true}
         clearColor={0xffffff}
       >
-        <scene>
+        <scene
+          ref="scene"
+        >
           <perspectiveCamera
             ref="camera"
             name="camera"
-            fov={75}
+            fov={50}
             aspect={window.innerWidth / window.innerHeight}
-            near={0.1}
+            near={1}
             far={1000}
             position={this.props.cameraPosition}
             quaternion={this.props.cameraQuaternion}
