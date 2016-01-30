@@ -5,6 +5,7 @@ import Scene3D from './three/scene.react';
 import Minecraft from './three/minecraft.react';
 import World from './three/world.react';
 import Controls from './controls.react';
+import Stats from './stats.react';
 
 /* main react component, the only component with state */
 
@@ -63,6 +64,7 @@ class App extends React.Component{
             />
           </World>
         </Scene3D>
+        <Stats />
       </div>
     );
   }
