@@ -2,6 +2,8 @@
 
 There are 2 versions of the configurator: one made with [react-three](https://github.com/Izzimach/react-three) and another made with [react-three-renderer](https://github.com/toxicFork/react-three-renderer). This shows you the different approach of these libraries.
 
+Check the [live examples](http://data.tweedegolf.nl/minecraft/) to see how this works.
+
 ### Installation
 
 Install livereload:
