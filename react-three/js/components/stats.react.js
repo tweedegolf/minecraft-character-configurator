@@ -1,5 +1,5 @@
 import React from 'react';
-import Stats from '../../lib/stats.min';
+import Stats from '../../../lib/stats.min';
 
 /* React wrapper for Threejs framerate counter library */
 
