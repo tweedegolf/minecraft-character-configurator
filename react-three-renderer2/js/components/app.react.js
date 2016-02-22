@@ -22,6 +22,10 @@ class App extends React.Component{
   componentDidMount() {
     SettingsStore.addChangeListener(this.onChangeListener);
     window.addEventListener('resize', this.onChangeListener);
+    this.scene3d = this.refs.scene3d;
+  }
+
+  componentDidUpdate() {
   }
 
   componentWillUnmount() {
@@ -38,6 +42,7 @@ class App extends React.Component{
     return(
       <div>
         <Controls
+          autoRender={this.state.autoRender}
           headSize={this.state.headSize}
           bodyWidth={this.state.bodyWidth}
           bodyHeight={this.state.bodyHeight}
@@ -48,6 +53,7 @@ class App extends React.Component{
           legSize={this.state.legSize}
         />
         <Scene3D
+          autoRender={this.state.autoRender}
           //sliderBusy={this.state.sliderBusy}
           cameraPosition={this.state.cameraPosition}
           cameraQuaternion={this.state.cameraQuaternion}

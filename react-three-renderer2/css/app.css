@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 12px;
+  background-color: #eee;
+}
+#controls{
+  position: absolute;
+  background-color: #fff;
+  padding: 10px;
+  padding-bottom: 5px;
+  bottom: 0;
+}
+#stats{
+  position: absolute;
+  top:0;
+  right: 0;
+}
+.slider{
+  margin-bottom: 4px;
+}
+input[type='range']{
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+em{
+  font-weight: bold;
+}

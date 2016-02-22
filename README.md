@@ -1,6 +1,8 @@
 ### Minecraft Character Configurator
 
-There are 2 versions of the configurator: one made with [react-three](https://github.com/Izzimach/react-three) and another made with [react-three-renderer](https://github.com/toxicFork/react-three-renderer). This shows you the different approach of these libraries.
+There are 3 versions of the configurator: one made with [react-three](https://github.com/Izzimach/react-three) and 2 made with [react-three-renderer](https://github.com/toxicFork/react-three-renderer). This shows you the different approach of these libraries.
+
+In react-three-renderer Three.js' render method is called every animation frame by default; the third version shows you how you can disable automatic rendering in react-three-renderer and call Threejs' render method only when the component has been updated.
 
 Check the [live examples](http://data.tweedegolf.nl/minecraft/) to see how this works.
 
@@ -10,7 +12,7 @@ Install livereload:
 
   - install [guard livereload](https://github.com/guard/guard-livereload)
 
-To install dependencies for each version of the configurator you have enter the `react-three` and the `react-three-renderer` folder subsequently and run:
+To install dependencies for each version of the configurator you have enter the `react-three`, `react-three-renderer` and the `react-three-renderer2` folder subsequently and run:
 
   - npm install
 

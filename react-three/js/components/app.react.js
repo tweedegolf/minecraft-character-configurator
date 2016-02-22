@@ -48,7 +48,7 @@ class App extends React.Component{
           legSize={this.state.legSize}
         />
         <Scene3D
-          sliderBusy={this.state.sliderBusy}
+          //sliderBusy={this.state.sliderBusy}
           cameraPosition={this.state.cameraPosition}
           cameraQuaternion={this.state.cameraQuaternion}
         >
