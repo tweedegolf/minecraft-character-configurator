@@ -18,8 +18,9 @@ class SceneComponent extends React.Component {
     super(props);
     this._mouseUpListener = this._onMouseUp.bind(this);
     this._orbitControlsHandler = this._onControllerChange.bind(this);
-    this._renderThree = function(){
-      console.log('void');
+    this._renderTrigger = function(){};
+    this._onManualRenderTriggerCreated = (renderTrigger) => {
+      this._renderTrigger = renderTrigger;
     };
   }
 
@@ -29,16 +30,9 @@ class SceneComponent extends React.Component {
 
     if(autoRender === false){
       this._orbitControls.addEventListener('change', this._orbitControlsHandler, false);
-
-      let renderRequest = this.refs.react3.refs.canvas.userData.markup.childrenMarkup[0].threeObject._renderRequest;
-      cancelAnimationFrame(renderRequest);
-      this._renderThree = this.refs.react3.refs.canvas.userData.markup.childrenMarkup[0].threeObject._render;
-      this._renderThree();
-      renderRequest = this.refs.react3.refs.canvas.userData.markup.childrenMarkup[0].threeObject._renderRequest;
-      cancelAnimationFrame(renderRequest);
+      this._renderTrigger();
     }else{
       this._canvas.addEventListener('mouseup', this._mouseUpListener, false);
-      this._renderThree();
     }
   }
 
@@ -53,10 +47,6 @@ class SceneComponent extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.autoRender === false){
-      let renderRequest = this.refs.react3.refs.canvas.userData.markup.childrenMarkup[0].threeObject._renderRequest;
-      cancelAnimationFrame(renderRequest);
-    }
   }
 
   componentDidMount(){
@@ -96,6 +86,8 @@ class SceneComponent extends React.Component {
         antialias
         shadowMapEnabled={true}
         clearColor={0xffffff}
+        forceManualRender={!this.props.autoRender}
+        onManualRenderTriggerCreated={this._onManualRenderTriggerCreated}
       >
         <scene
           ref="scene"
@@ -125,10 +117,9 @@ class SceneComponent extends React.Component {
 
         </scene>
       </React3>
-
     );
     if(this.props.autoRender === false){
-      this._renderThree();
+      this._renderTrigger();
     }
     return scene;
   }

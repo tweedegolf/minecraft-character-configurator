@@ -24,8 +24,8 @@
     "flux": "^2.1.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "three": "^0.73.0",
-    "react-three-renderer": "0.0.16-alpha"
+    "react-three-renderer": "^0.1.0",
+    "three": "^0.74.0"
   },
   "scripts": {
     "start": "ws --port 8001",
