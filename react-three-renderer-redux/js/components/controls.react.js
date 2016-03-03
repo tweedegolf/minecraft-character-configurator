@@ -1,15 +1,13 @@
 import React from 'react';
-import ReactSlider from './slider.react';
-import {connect} from 'react-redux';
-import * as actions from '../actions';
+import Slider from '../containers/slider_container';
+import * as types from '../constants/action_types';
 
 class Controls extends React.Component{
 
   static displayName = 'Controls';
 
-  constructor(props, {dispatch}){
+  constructor(props){
     super(props);
-    console.log(dispatch);
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -23,87 +21,44 @@ class Controls extends React.Component{
         break;
       }
     }
-    //console.log('should update', u);
+    console.log('should update', u);
     return u;
   }
 
   render(){
     return(
       <div id="controls">
-        <div id="button">
-          <label>auto render: </label>
-          <input
-            type="button"
-            value={this.props.autoRender ? 'on' : 'off'}
-            onClick={actions.changeRenderMethod}
-          />
-        </div>
         <div id="sliders">
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setHeadSize}
-            min={1} max={100} step={1}
-            value={this.props.headSize}
+          <Slider
+            type={types.HEAD_SIZE}
             label="head size: "
           />
-
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setBodyWidth}
-            min={1} max={100} step={1}
-            value={this.props.bodyWidth}
+          <Slider
+            type={types.BODY_WIDTH}
             label="body width: "
           />
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setBodyHeight}
-            min={1} max={100} step={1}
-            value={this.props.bodyHeight}
+          <Slider
+            type={types.BODY_HEIGHT}
             label="body height: "
           />
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setBodyDepth}
-            min={1} max={100} step={1}
-            value={this.props.bodyDepth}
+          <Slider
+            type={types.BODY_DEPTH}
             label="body depth: "
           />
-
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setArmSize}
-            min={1} max={50} step={1}
-            value={this.props.armSize}
+          <Slider
+            type={types.ARM_SIZE}
             label="arm size: "
           />
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setArmLength}
-            min={1} max={100} step={1}
-            value={this.props.armLength}
+          <Slider
+            type={types.ARM_LENGTH}
             label="arm length: "
           />
-
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setLegSize}
-            min={1} max={50} step={1}
-            value={this.props.legSize}
+          <Slider
+            type={types.LEG_SIZE}
             label="leg size: "
           />
-          <ReactSlider
-            onMouseDown={actions.setSliderBusy}
-            onMouseUp={actions.setSliderBusy}
-            onChange={actions.setLegLength}
-            min={1} max={100} step={1}
-            value={this.props.legLength}
+          <Slider
+            type={types.LEG_LENGTH}
             label="leg length: "
           />
         </div>
@@ -112,30 +67,4 @@ class Controls extends React.Component{
   }
 }
 
-Controls.propTypes = {
-  headSize: React.PropTypes.number,
-  bodyWidth: React.PropTypes.number,
-  bodyHeight: React.PropTypes.number,
-  bodyDepth: React.PropTypes.number,
-  armSize: React.PropTypes.number,
-  armLength: React.PropTypes.number,
-  legSize: React.PropTypes.number,
-  legLength: React.PropTypes.number
-};
-
-
-const mapStateToProps = function(state){
-
-};
-
-const mapDispatchToProps = function(dispatch){
-
-};
-
-const controls = connect(
-//  mapStateToProps,
-//  mapDispatchToProps
-)(Controls);
-
-//export default Controls;
-export default controls;
+export default Controls;

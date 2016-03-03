@@ -16,6 +16,37 @@ export function changeRenderMethod(e){
   };
 }
 
+export function setSliderBusy(e) {
+  return {
+    type: types.SLIDER_BUSY,
+    payload: {
+      value: e.nativeEvent.type === 'mousedown'
+    }
+  };
+}
+
+export function sliderChange(e, type) {
+  return {
+    type: type,
+    payload: {
+      value: e.target.valueAsNumber
+    }
+  };
+}
+
+export function updateCamera(e){
+  return {
+    type: types.UPDATE_CAMERA,
+    payload: {
+      position: e.position,
+      quaternion: e.quaternion
+    }
+  };
+}
+
+
+/*
+
 export function setHeadSize(e) {
   return {
     type: types.HEAD_SIZE,
@@ -88,21 +119,4 @@ export function setArmLength(e) {
   };
 }
 
-export function setSliderBusy(e) {
-  return {
-    type: types.SLIDER_BUSY,
-    payload: {
-      value: e.nativeEvent.type === 'mousedown'
-    }
-  };
-}
-
-export function updateCamera(e){
-  return {
-    type: types.UPDATE_CAMERA,
-    payload: {
-      position: e.position,
-      quaternion: e.quaternion
-    }
-  };
-}
+*/

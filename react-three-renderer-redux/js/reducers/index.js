@@ -75,6 +75,7 @@ const minecraftApp = (state = initialState, action) => {
     case types.ARM_SIZE:
     case types.ARM_LENGTH:
     case types.BODY_LENGTH:
+    case types.BODY_WIDTH:
     case types.BODY_HEIGHT:
     case types.BODY_DEPTH:
     case types.HEAD_SIZE:
@@ -89,7 +90,7 @@ const minecraftApp = (state = initialState, action) => {
       break;
 
     case types.CHANGE_RENDER_METHOD:
-      console.log('hebbes!', action.payload.value);
+      console.log('CHANGE_RENDER_METHOD', action.payload.value);
       break;
 
     default:

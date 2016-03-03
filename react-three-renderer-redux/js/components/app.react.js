@@ -2,6 +2,10 @@ import THREE from 'three';
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
+import Slider from '../containers/slider_container';
+import Controls from './controls.react';
+import * as types from '../constants/action_types';
+
 
 /* main react component, the only component with state */
 
@@ -40,6 +44,7 @@ class App extends React.Component{
           }
         >{"click me"}
         </button>
+        <Controls />
       </div>
     );
   }

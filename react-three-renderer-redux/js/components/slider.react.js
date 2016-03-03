@@ -27,6 +27,7 @@ class Slider extends React.Component{
       }
       return {__html: label};
     }
+
     return (
       <div>
         <label htmlFor={this.props.id} style={labelStyle} dangerouslySetInnerHTML={createLabel(this.props)} />
@@ -49,14 +50,14 @@ class Slider extends React.Component{
 
 Slider.propTypes = {
   id: React.PropTypes.string,
-  label: React.PropTypes.string,
-  max: React.PropTypes.number,
-  min: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  onMouseUp: React.PropTypes.func,
-  onMouseDown: React.PropTypes.func,
-  step: React.PropTypes.number,
-  value: React.PropTypes.number
+  label: React.PropTypes.string.isRequired,
+  max: React.PropTypes.number.isRequired,
+  min: React.PropTypes.number.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+  onMouseUp: React.PropTypes.func.isRequired,
+  onMouseDown: React.PropTypes.func.isRequired,
+  step: React.PropTypes.number.isRequired,
+  value: React.PropTypes.number.isRequired
 };
 
 export default Slider;
