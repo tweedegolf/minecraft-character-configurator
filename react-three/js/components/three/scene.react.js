@@ -19,7 +19,7 @@ class SceneComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this._orbitControlsHandler = this._onControllerChange.bind(this);
+    this._orbitControlsHandler = this._onOrbitControllerChange.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -40,7 +40,7 @@ class SceneComponent extends React.Component {
     this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false);
   }
 
-  _onControllerChange(e){
+  _onOrbitControllerChange(e){
     SettingsAction.updateCamera({
       position: this._camera.position,
       quaternion: this._camera.quaternion
