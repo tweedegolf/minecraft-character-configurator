@@ -16,7 +16,6 @@ class SceneComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this._mouseUpListener = this._onMouseUp.bind(this);
     this._orbitControlsHandler = this._onControllerChange.bind(this);
     this._renderTrigger = function(){};
     this._onManualRenderTriggerCreated = (renderTrigger) => {
@@ -24,26 +23,23 @@ class SceneComponent extends React.Component {
     };
   }
 
-  _init(autoRender){
-    this._canvas.removeEventListener('mouseup', this._mouseUpListener, false);
-    this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false);
-
-    if(autoRender === false){
-      this._orbitControls.addEventListener('change', this._orbitControlsHandler, false);
-      this._renderTrigger();
-    }else{
-      this._canvas.addEventListener('mouseup', this._mouseUpListener, false);
-    }
-  }
+  // _init(autoRender){
+  //   if(autoRender === false){
+  //     this._orbitControls.addEventListener('change', this._orbitControlsHandler, false);
+  //     this._renderTrigger();
+  //   }else{
+  //     this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false);
+  //   }
+  // }
 
   shouldComponentUpdate(nextProps, nextState){
     return !nextProps.sliderBusy;
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.autoRender !== this.props.autoRender){
-      this._init(nextProps.autoRender);
-    }
+    // if(nextProps.autoRender !== this.props.autoRender){
+    //   this._init(nextProps.autoRender);
+    // }
   }
 
   componentDidUpdate(){
@@ -53,20 +49,13 @@ class SceneComponent extends React.Component {
     this._canvas = ReactDOM.findDOMNode(this.refs.react3);
     this._camera = this.refs.camera;
     this._orbitControls = new THREE.OrbitControls(this._camera, this._canvas);
-    this._init(this.props.autoRender);
+    this._orbitControls.addEventListener('change', this._orbitControlsHandler, false);
+    //this._init(this.props.autoRender);
   }
 
   componentWillUnmount(){
     this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false);
-    this._canvas.removeEventListener('mouseup', this._mouseUpListener, false);
     this._orbitControls.dispose();
-  }
-
-  _onMouseUp(e){
-    SettingsAction.updateCamera({
-      position: this._camera.position,
-      quaternion: this._camera.quaternion
-    });
   }
 
   _onControllerChange(e){
