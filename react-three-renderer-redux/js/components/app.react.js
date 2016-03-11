@@ -1,21 +1,19 @@
-import THREE from 'three';
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../actions';
-import Slider from '../containers/slider_container';
-import Controls from './controls.react';
-import * as types from '../constants/action_types';
+import React from 'react'
+import {connect} from 'react-redux'
+import * as actions from '../actions'
+import Controls from '../components/controls.react'
+import Stats from '../components/stats.react'
+import Scene3D from '../components/scene.react'
+import World from '../components/world.react'
+import Minecraft from '../components/minecraft.react'
 
-
-/* main react component, the only component with state */
 
 class App extends React.Component{
 
   static displayName = 'App';
 
-  constructor({dispatch}){
-    super();
-    this._dispatch = dispatch;
+  constructor(props){
+    super(props)
   }
 
   componentDidMount() {
@@ -27,44 +25,46 @@ class App extends React.Component{
   componentWillUnmount() {
   }
 
-  onChange(){
-//    let state = SettingsStore.getSettings();
-//    this.setState(state);
-  }
-
   render(){
     return(
       <div>
-        <button
-          value={"click me!"}
-          onClick={
-            (e) => {
-              this._dispatch(actions.changeRenderMethod(e));
-            }
-          }
-        >{"click me"}
-        </button>
-        <Controls />
+        <Controls/>
+        <Scene3D store={this.props.store}/>
+        <Stats/>
       </div>
-    );
+    )
   }
+  // render(){
+  //   return(
+  //     <div>
+  //       <Controls/>
+  //       <Scene3D>
+  //         <World>
+  //           <Minecraft/>
+  //         </World>
+  //       </Scene3D>
+  //       <Stats />
+  //     </div>
+  //   )
+  // }
 }
 
-App.propTypes = {};
+App.propTypes = {}
 
 
-const mapStateToProps = function(state){
+// const mapStateToProps = function(state){
+//   return state
+// }
 
-};
+// const mapDispatchToProps = function(dispatch){
+//   return {
+//     dispatch
+//   }
+// }
 
-const mapDispatchToProps = function(dispatch){
-
-};
-
-const app = connect(
+// export default connect(
 //  mapStateToProps,
 //  mapDispatchToProps
-)(App);
+// )(App)
 
-export default app;
-//export default App;
+export default App

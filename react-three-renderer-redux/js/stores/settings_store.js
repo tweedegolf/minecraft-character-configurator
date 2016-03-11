@@ -21,6 +21,7 @@ class SettingsStore extends EventEmitter {
     this.armSize = 8;
     this.armLength = 35;
     this.sceneRotation = new THREE.Quaternion();
+    this.worldPosition = new THREE.Vector3();
     this.worldRotation = Globals.WORLD_ROTATION;
     this.sliderBusy = false;
     this.cameraPosition = new THREE.Vector3(0, 300, 500);
@@ -98,6 +99,7 @@ class SettingsStore extends EventEmitter {
           color: 0x00ccc0
         }
       },
+      worldPosition: this.worldPosition,
       worldRotation: this.worldRotation,
       sceneRotation: this.sceneRotation, // not in use yet
       sliderBusy: this.sliderBusy,

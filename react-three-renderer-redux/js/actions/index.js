@@ -7,6 +7,12 @@ import * as types from '../constants/action_types';
 //   };
 // };
 
+export function init(e){
+  return {
+    type: types.INIT
+  };
+}
+
 export function changeRenderMethod(e){
   return {
     type: types.CHANGE_RENDER_METHOD,

@@ -10,21 +10,6 @@ class Controls extends React.Component{
     super(props);
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    //let u = Object.is(nextProps, this.props);
-    let u = false;
-    let keys = Object.keys(nextProps);
-    for(let i = keys.length - 1; i >= 0; i--){
-      let key = keys[i];
-      if(Object.is(nextProps[key], this.props[key]) === false){
-        u = true;
-        break;
-      }
-    }
-    console.log('should update', u);
-    return u;
-  }
-
   render(){
     return(
       <div id="controls">

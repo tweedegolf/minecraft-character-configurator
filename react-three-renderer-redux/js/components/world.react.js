@@ -1,24 +1,35 @@
 import THREE from 'three';
-import React from 'react';
-import React3 from 'react-three-renderer';
+import React, {Component, PropTypes}from 'react';
+import ReactDOM from 'react-dom'
+import React3 from 'react-three-renderer'
+import {connect} from 'react-redux';
 
-class World extends React.Component{
+
+const mapStateToProps = function(state){
+  return{
+    position: state.worldPosition,
+    quaternion: state.worldRotation
+  }
+};
+
+@connect(mapStateToProps)
+
+class World extends Component{
 
   static displayName = 'World';
 
   constructor(props){
-    super(props);
+    super(props)
   }
 
   render() {
     return (
       <group
         key={'world'}
-        quaternion={this.props.worldRotation}
+        quaternion={this.props.quaternion}
       >
         <mesh
           key={'floor'}
-          //key={THREE.Math.generateUUID()} // the key has to be unique otherwise it won't render after an update, I think this is weird
           position={this.props.position}
         >
           <planeBufferGeometry
@@ -41,8 +52,9 @@ class World extends React.Component{
 }
 
 World.propTypes = {
-  position: React.PropTypes.instanceOf(THREE.Vector3),
-  worldRotation: React.PropTypes.instanceOf(THREE.Quaternion)
+  position: PropTypes.instanceOf(THREE.Vector3),
+  quaternion: PropTypes.instanceOf(THREE.Quaternion)
 };
 
-export default World;
+
+export default World

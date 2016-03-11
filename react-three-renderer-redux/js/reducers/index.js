@@ -70,6 +70,12 @@ function getConfig(state){
 const minecraftApp = (state = initialState, action) => {
   switch(action.type){
 
+    case types.INIT:
+      state = Object.assign({}, state, {
+        config: getConfig(initialState)
+      });
+      break;
+
     case types.LEG_SIZE:
     case types.LEG_LENGTH:
     case types.ARM_SIZE:
