@@ -13,10 +13,9 @@ const mapStateToProps = function(state){
 };
 
 @connect(mapStateToProps)
+export default class World extends Component{
 
-class World extends Component{
-
-  static displayName = 'World';
+  static displayName = 'World'
 
   constructor(props){
     super(props)
@@ -45,7 +44,9 @@ class World extends Component{
             wireframe
           />
         </mesh>
+
         {this.props.children}
+
       </group>
     );
   }
@@ -55,6 +56,3 @@ World.propTypes = {
   position: PropTypes.instanceOf(THREE.Vector3),
   quaternion: PropTypes.instanceOf(THREE.Quaternion)
 };
-
-
-export default World

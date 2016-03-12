@@ -1,13 +1,13 @@
-import THREE from 'three';
-import React from 'react';
-import React3 from 'react-three-renderer';
+import THREE from 'three'
+import React, {Component, PropTypes}from 'react'
+import React3 from 'react-three-renderer'
 
-class Box extends React.Component {
+class Box extends Component {
 
-  static displayName = 'Box';
+  static displayName = 'Box'
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -26,14 +26,14 @@ class Box extends React.Component {
           color={this.props.color}
         />
       </mesh>
-    );
+    )
   }
 }
 
 Box.propTypes = {
-  color: React.PropTypes.number,
-  position: React.PropTypes.instanceOf(Object),
-  size: React.PropTypes.instanceOf(Object)
-};
+  color: PropTypes.number,
+  position: PropTypes.instanceOf(Object),
+  size: PropTypes.instanceOf(Object)
+}
 
-export default Box;
+export default Box

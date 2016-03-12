@@ -1,7 +1,7 @@
 import THREE from 'three';
 import React, {Component, PropTypes}from 'react';
 import React3 from 'react-three-renderer';
-import Box from './box.react';
+import Box from '../components/box.react';
 import {init} from '../actions'
 import {connect} from 'react-redux';
 
@@ -21,36 +21,23 @@ const mapDispatchToProps = function(dispatch){
   }
 }
 
-//@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps)
+export default class Minecraft extends Component {
 
-class Minecraft extends Component {
-
-  static displayName = 'Minecraft';
+  static displayName = 'Minecraft'
 
   constructor(props) {
     super(props);
   }
 
   componentDidMount(){
-    this.props.dispatch(init())
   }
 
   render() {
     let config = this.props.config;
 
-    console.log(this.props)
-
     if(typeof config === 'undefined'){
-      return (
-        <group key={'dummy'}>
-          <Box
-            key={'head'}
-            size={{x:20, y:20, z:20}}
-            color={0xccc000}
-            position={new THREE.Vector3()}
-          />
-        </group>
-      )
+      return (<group key={'placeholder'}></group>)
     }
 
     return (
@@ -107,6 +94,3 @@ Minecraft.propTypes = {
   quaternion: PropTypes.instanceOf(THREE.Quaternion),
   scale: PropTypes.instanceOf(THREE.Vector3)
 };
-
-//export default Minecraft;
-export default connect(mapStateToProps, mapDispatchToProps)(Minecraft);

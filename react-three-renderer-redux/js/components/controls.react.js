@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Slider from '../containers/slider_container';
 import * as types from '../constants/action_types';
 
-class Controls extends React.Component{
+export default class Controls extends Component{
 
   static displayName = 'Controls';
 
@@ -51,5 +51,3 @@ class Controls extends React.Component{
     );
   }
 }
-
-export default Controls;

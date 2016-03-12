@@ -1,6 +1,6 @@
-import THREE from 'three';
-import * as types from '../constants/action_types';
-import * as globals from '../constants/globals';
+import THREE from 'three'
+import * as types from '../constants/action_types'
+import * as globals from '../constants/globals'
 
 
 const initialState = {
@@ -17,20 +17,27 @@ const initialState = {
   sliderBusy: false,
   cameraPosition: new THREE.Vector3(0, 300, 500),
   cameraQuaternion: new THREE.Quaternion(),
-  autoRender: false
-};
+  autoRender: true
+}
 
 
-function getConfig(state){
+const getInitialState = () => {
+  return Object.assign({}, initialState, {
+    config: getConfig(initialState)
+  })
+}
 
-  let legLength = state.legLength;
-  let legSize = state.legSize;
-  let bodyWidth = state.bodyWidth;
-  let bodyHeight = state.bodyHeight;
-  let bodyDepth = state.bodyDepth;
-  let headSize = state.headSize;
-  let armSize = state.armSize;
-  let armLength = state.armLength;
+
+const getConfig = (state) => {
+
+  let legLength = state.legLength
+  let legSize = state.legSize
+  let bodyWidth = state.bodyWidth
+  let bodyHeight = state.bodyHeight
+  let bodyDepth = state.bodyDepth
+  let headSize = state.headSize
+  let armSize = state.armSize
+  let armLength = state.armLength
 
   return {
     head: {
@@ -63,18 +70,12 @@ function getConfig(state){
       position: {x: ((bodyWidth / 2) + (armSize / 2)), y: 0, z: (legLength + bodyHeight) - (armLength / 2)},
       color: 0x00ccc0
     }
-  };
+  }
 }
 
 
-const minecraftApp = (state = initialState, action) => {
+const minecraftApp = (state = getInitialState(), action) => {
   switch(action.type){
-
-    case types.INIT:
-      state = Object.assign({}, state, {
-        config: getConfig(initialState)
-      });
-      break;
 
     case types.LEG_SIZE:
     case types.LEG_LENGTH:
@@ -87,22 +88,22 @@ const minecraftApp = (state = initialState, action) => {
     case types.HEAD_SIZE:
     case types.SLIDER_BUSY:
 
-      initialState[action.type] = action.payload.value;
+      initialState[action.type] = action.payload.value
 
       state = Object.assign({}, state, {
         [action.type]: action.payload.value,
         config: getConfig(initialState)
-      });
-      break;
+      })
+      break
 
     case types.CHANGE_RENDER_METHOD:
-      console.log('CHANGE_RENDER_METHOD', action.payload.value);
-      break;
+      console.log('CHANGE_RENDER_METHOD', action.payload.value)
+      break
 
     default:
       // just return state
   }
-  return state;
-};
+  return state
+}
 
-export default minecraftApp;
+export default minecraftApp

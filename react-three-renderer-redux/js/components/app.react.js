@@ -3,23 +3,20 @@ import {connect} from 'react-redux'
 import * as actions from '../actions'
 import Controls from '../components/controls.react'
 import Stats from '../components/stats.react'
-import Scene3D from '../components/scene.react'
-import World from '../components/world.react'
-import Minecraft from '../components/minecraft.react'
+import Scene3D from '../containers/scene.react'
+import World from '../containers/world.react'
+import Minecraft from '../containers/minecraft.react'
 
 
-class App extends React.Component{
+export default class App extends React.Component{
 
-  static displayName = 'App';
+  static displayName = 'App'
 
   constructor(props){
     super(props)
   }
 
   componentDidMount() {
-  }
-
-  componentDidUpdate() {
   }
 
   componentWillUnmount() {
@@ -29,42 +26,15 @@ class App extends React.Component{
     return(
       <div>
         <Controls/>
-        <Scene3D store={this.props.store}/>
-        <Stats/>
+        <Scene3D store={this.props.store}>
+          <World store={this.props.store}>
+            <Minecraft store={this.props.store}/>
+          </World>
+        </Scene3D>
+        <Stats />
       </div>
     )
   }
-  // render(){
-  //   return(
-  //     <div>
-  //       <Controls/>
-  //       <Scene3D>
-  //         <World>
-  //           <Minecraft/>
-  //         </World>
-  //       </Scene3D>
-  //       <Stats />
-  //     </div>
-  //   )
-  // }
 }
 
 App.propTypes = {}
-
-
-// const mapStateToProps = function(state){
-//   return state
-// }
-
-// const mapDispatchToProps = function(dispatch){
-//   return {
-//     dispatch
-//   }
-// }
-
-// export default connect(
-//  mapStateToProps,
-//  mapDispatchToProps
-// )(App)
-
-export default App

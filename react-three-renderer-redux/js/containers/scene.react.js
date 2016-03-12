@@ -3,16 +3,13 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux';
 import ReactDOM from 'react-dom'
 import React3 from 'react-three-renderer'
-import SettingsAction from '../actions/'
+import {updateCamera} from '../actions'
 import OrbitControls from '../../lib/OrbitControls'
-import World from './world.react'
-import Minecraft from './minecraft.react'
 
 
 /* scene graph */
-const mapStateToProps = function(state, ownProps){
+const mapStateToProps = function(state){
   return {
-    store: ownProps.store,
     cameraPosition: state.cameraPosition,
     cameraQuaternion: state.cameraQuaternion,
     worldPosition: state.worldPosition,
@@ -28,12 +25,9 @@ const mapDispatchToProps = function(dispatch){
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-/*
-*/
+export default class SceneComponent extends Component {
 
-class SceneComponent extends Component {
-
-  static displayName = 'Scene3D';
+  static displayName = 'Scene3D'
 
   constructor(props) {
     super(props)
@@ -85,17 +79,17 @@ class SceneComponent extends Component {
   }
 
   _onMouseUp(e){
-    SettingsAction.updateCamera({
+    this.props.dispatch(updateCamera({
       position: this._camera.position,
       quaternion: this._camera.quaternion
-    })
+    }))
   }
 
   _onControllerChange(e){
-    SettingsAction.updateCamera({
+    this.props.dispatch(updateCamera({
       position: this._camera.position,
       quaternion: this._camera.quaternion
-    })
+    }))
   }
 
   render() {
@@ -108,7 +102,7 @@ class SceneComponent extends Component {
         antialias
         shadowMapEnabled={true}
         clearColor={0xffffff}
-        forceManualRender={false}
+        forceManualRender={!this.props.autoRender}
         onManualRenderTriggerCreated={this._onManualRenderTriggerCreated}
       >
         <scene
@@ -135,10 +129,7 @@ class SceneComponent extends Component {
             position={new THREE.Vector3(0, 0, 60)}
           />
 
-          <World store={this.props.store}>
-            <Minecraft store={this.props.store} />
-          </World>
-
+          {this.props.children}
 
         </scene>
       </React3>
@@ -153,29 +144,3 @@ class SceneComponent extends Component {
 SceneComponent.propTypes = {
   autoRender: PropTypes.bool
 }
-
-export default SceneComponent
-
-/*
-const mapStateToProps = function(state, ownProps){
-  return {
-    store: ownProps.store,
-    cameraPosition: state.cameraPosition,
-    cameraQuaternion: state.cameraQuaternion,
-    worldPosition: state.worldPosition,
-    worldQuaternion: state.worldQuaternion,
-    autoRender: state.autoRender
-  }
-}
-
-const mapDispatchToProps = function(dispatch){
-  return {
-    dispatch
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SceneComponent)
-*/

@@ -5,11 +5,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import minecraftApp from './reducers';
+import configureStore from './stores/configure_store';
 
 window.onload = function(){
 
-  let store = createStore(minecraftApp);
+  let store = configureStore();
 
   ReactDOM.render(
     <Provider store={store}>

@@ -4,8 +4,6 @@ export const SLIDER_CHANGE = 'sliderChange';
 export const CHANGE_RENDER_METHOD = 'changeRenderMethod';
 export const UPDATE_CAMERA = 'updateCamera';
 
-export const INIT = 'init';
-
 export const HEAD_SIZE = 'headSize';
 export const BODY_WIDTH = 'bodyWidth';
 export const BODY_HEIGHT = 'bodyHeight';
