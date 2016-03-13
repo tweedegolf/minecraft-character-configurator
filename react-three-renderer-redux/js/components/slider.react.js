@@ -1,31 +1,31 @@
-import React from 'react';
+import React from 'react'
 
 let labelStyle = {
   width: '140px',
   height: '1.9em',
   display: 'inline-block'
-};
+}
 
 let inputStyle = {
   verticalAlign: 'middle',
   //marginBottom: '5px',
   width: '200px'
-};
+}
 
 /* React wrapper for input type Range */
 
-class Slider extends React.Component{
+export default class Slider extends React.Component{
 
-  static displayName = 'Slider';
+  static displayName = 'Slider'
 
   render(){
-    let value = this.props.value;
+    let value = this.props.value
     function createLabel(props){
-      let label = value;
+      let label = value
       if(props.label){
-        label = props.label + '<em>' + value + '</em>';
+        label = props.label + '<em>' + value + '</em>'
       }
-      return {__html: label};
+      return {__html: label}
     }
 
     return (
@@ -44,7 +44,7 @@ class Slider extends React.Component{
           step={this.props.step}
         />
       </div>
-    );
+    )
   }
 }
 
@@ -58,6 +58,4 @@ Slider.propTypes = {
   onMouseDown: React.PropTypes.func.isRequired,
   step: React.PropTypes.number.isRequired,
   value: React.PropTypes.number.isRequired
-};
-
-export default Slider;
+}

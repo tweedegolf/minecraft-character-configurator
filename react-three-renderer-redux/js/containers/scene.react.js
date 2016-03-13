@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import React3 from 'react-three-renderer'
 import {updateCamera, resize} from '../actions'
 import OrbitControls from '../../lib/OrbitControls'
-//import getStore from '../stores/configure_store' // singleton
+import getStore from '../stores/configure_store' // singleton
 import World from '../containers/world.react'
 import Minecraft from '../containers/minecraft.react'
 
@@ -38,76 +38,40 @@ export default class SceneComponent extends Component {
 
   constructor(props) {
     super(props)
-    this.store = props.store
-    this._mouseUpListener = this._onMouseUp.bind(this)
-    this._orbitControlsHandler = this._onControllerChange.bind(this)
-    this._renderTrigger = function(){}
-    this._onManualRenderTriggerCreated = (renderTrigger) => {
-      this._renderTrigger = renderTrigger
-    }
+    //this.storeInstance = props.store
     this.storeInstance = getStore()
     this.onResizeListener = this._onResize.bind(this)
-    window.addEventListener('resize', this.onResizeListener)
-  }
-
-  _init(autoRender){
-    this._canvas.removeEventListener('mouseup', this._mouseUpListener, false)
-    this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false)
-
-    if(autoRender === false){
-      this._orbitControls.addEventListener('change', this._orbitControlsHandler, false)
-      this._renderTrigger()
-    }else{
-      this._canvas.addEventListener('mouseup', this._mouseUpListener, false)
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState){
     return !nextProps.sliderBusy
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.autoRender !== this.props.autoRender){
-      this._init(nextProps.autoRender)
-    }
-  }
-
-  componentDidUpdate(){
-  }
-
   componentDidMount(){
     this._canvas = ReactDOM.findDOMNode(this.refs.react3)
     this._camera = this.refs.camera
     this._orbitControls = new THREE.OrbitControls(this._camera, this._canvas)
-    this._init(this.props.autoRender)
+    window.addEventListener('resize', this.onResizeListener)
   }
 
   componentWillUnmount(){
-    this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false)
-    this._canvas.removeEventListener('mouseup', this._mouseUpListener, false)
     this._orbitControls.dispose()
     window.removeEventListener('resize', this.onResizeListener)
   }
 
-  _onResize(e){
-    this.props.dispatch(resize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    }))
-  }
-
-  _onMouseUp(e){
-    this.props.dispatch(updateCamera({
-      position: this._camera.position,
-      quaternion: this._camera.quaternion
-    }))
-  }
-
-  _onControllerChange(e){
-    this.props.dispatch(updateCamera({
-      position: this._camera.position,
-      quaternion: this._camera.quaternion
-    }))
+  _onResize(){
+    // let o = resize({
+    //   width: window.innerWidth,
+    //   height: window.innerHeight
+    // })
+    // console.log(o, window.innerHeight)
+    this.props.dispatch({
+      type: 'resize',
+      payload: {
+        width: window.innerWidth,
+        height: window.innerHeight
+      }
+    })
   }
 
   render() {
@@ -130,7 +94,7 @@ export default class SceneComponent extends Component {
             ref="camera"
             name="camera"
             fov={50}
-            aspect={window.innerWidth / window.innerHeight}
+            aspect={this.props.sceneWidth / this.props.sceneHeight}
             near={1}
             far={1000}
             position={this.props.cameraPosition}
@@ -154,9 +118,6 @@ export default class SceneComponent extends Component {
         </scene>
       </React3>
     )
-    if(this.props.autoRender === false){
-      this._renderTrigger()
-    }
     return scene
   }
 }

@@ -17,7 +17,7 @@ const initialState = {
   sliderBusy: false,
   cameraPosition: new THREE.Vector3(0, 300, 500),
   cameraQuaternion: new THREE.Quaternion(),
-  autoRender: false,
+  autoRender: true,
   sceneWidth: window.innerWidth,
   sceneHeight: window.innerHeight
 }
