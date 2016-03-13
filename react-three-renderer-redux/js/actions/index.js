@@ -38,7 +38,7 @@ export function updateCamera(e){
   }
 }
 
-export function resize(e){
+export function handleResize(e){
   return {
     type: types.RESIZE,
     payload: {

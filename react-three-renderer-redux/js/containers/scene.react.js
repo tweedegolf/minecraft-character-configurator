@@ -3,7 +3,7 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import ReactDOM from 'react-dom'
 import React3 from 'react-three-renderer'
-import {updateCamera, resize} from '../actions'
+import {updateCamera, handleResize} from '../actions'
 import OrbitControls from '../../lib/OrbitControls'
 import getStore from '../stores/configure_store' // singleton
 import World from '../containers/world.react'
@@ -60,18 +60,10 @@ export default class SceneComponent extends Component {
   }
 
   _onResize(){
-    // let o = resize({
-    //   width: window.innerWidth,
-    //   height: window.innerHeight
-    // })
-    // console.log(o, window.innerHeight)
-    this.props.dispatch({
-      type: 'resize',
-      payload: {
-        width: window.innerWidth,
-        height: window.innerHeight
-      }
-    })
+    this.props.dispatch(handleResize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    }))
   }
 
   render() {
