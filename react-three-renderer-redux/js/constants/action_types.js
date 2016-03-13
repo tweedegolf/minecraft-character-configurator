@@ -3,6 +3,7 @@ export const SLIDER_CHANGE = 'sliderChange';
 
 export const CHANGE_RENDER_METHOD = 'changeRenderMethod';
 export const UPDATE_CAMERA = 'updateCamera';
+export const RESIZE = 'resize';
 
 export const HEAD_SIZE = 'headSize';
 export const BODY_WIDTH = 'bodyWidth';

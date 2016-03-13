@@ -1,11 +1,11 @@
-import * as types from '../constants/action_types';
+import * as types from '../constants/action_types'
 
 
 // export const changeRenderMethod = () => {
 //   return {
 //     type: types.CHANGE_RENDER_METHOD
-//   };
-// };
+//   }
+// }
 
 
 export function changeRenderMethod(e){
@@ -14,7 +14,7 @@ export function changeRenderMethod(e){
     payload: {
       value: e.nativeEvent.type
     }
-  };
+  }
 }
 
 export function setSliderBusy(e) {
@@ -23,7 +23,7 @@ export function setSliderBusy(e) {
     payload: {
       value: e.nativeEvent.type === 'mousedown'
     }
-  };
+  }
 }
 
 export function sliderChange(e, type) {
@@ -32,7 +32,7 @@ export function sliderChange(e, type) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function updateCamera(e){
@@ -42,7 +42,17 @@ export function updateCamera(e){
       position: e.position,
       quaternion: e.quaternion
     }
-  };
+  }
+}
+
+export function resize(e){
+  return {
+    type: types.RESIZE,
+    payload: {
+      width: e.width,
+      height: e.height
+    }
+  }
 }
 
 
@@ -54,7 +64,7 @@ export function setHeadSize(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setBodyWidth(e) {
@@ -63,7 +73,7 @@ export function setBodyWidth(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setBodyHeight(e) {
@@ -72,7 +82,7 @@ export function setBodyHeight(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setBodyDepth(e) {
@@ -81,7 +91,7 @@ export function setBodyDepth(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setLegSize(e) {
@@ -90,7 +100,7 @@ export function setLegSize(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setLegLength(e) {
@@ -99,7 +109,7 @@ export function setLegLength(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setArmSize(e) {
@@ -108,7 +118,7 @@ export function setArmSize(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 export function setArmLength(e) {
@@ -117,7 +127,7 @@ export function setArmLength(e) {
     payload: {
       value: e.target.valueAsNumber
     }
-  };
+  }
 }
 
 */

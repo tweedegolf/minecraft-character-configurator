@@ -17,7 +17,9 @@ const initialState = {
   sliderBusy: false,
   cameraPosition: new THREE.Vector3(0, 300, 500),
   cameraQuaternion: new THREE.Quaternion(),
-  autoRender: true
+  autoRender: false,
+  sceneWidth: window.innerWidth,
+  sceneHeight: window.innerHeight
 }
 
 
@@ -98,6 +100,14 @@ const minecraftApp = (state = getInitialState(), action) => {
 
     case types.CHANGE_RENDER_METHOD:
       console.log('CHANGE_RENDER_METHOD', action.payload.value)
+      break
+
+    case types.RESIZE:
+      state = Object.assign({}, state, {
+        sceneWidth: action.payload.width,
+        sceneHeight: action.payload.height,
+        config: getConfig(initialState)
+      })
       break
 
     default:

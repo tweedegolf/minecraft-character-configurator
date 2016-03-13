@@ -1,15 +1,22 @@
 import THREE from 'three'
 import React, {Component, PropTypes} from 'react'
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 import ReactDOM from 'react-dom'
 import React3 from 'react-three-renderer'
-import {updateCamera} from '../actions'
+import {updateCamera, resize} from '../actions'
 import OrbitControls from '../../lib/OrbitControls'
+//import getStore from '../stores/configure_store' // singleton
+import World from '../containers/world.react'
+import Minecraft from '../containers/minecraft.react'
+
 
 
 /* scene graph */
 const mapStateToProps = function(state){
   return {
+    //store: getStore(),
+    sceneWidth: state.sceneWidth,
+    sceneHeight: state.sceneHeight,
     cameraPosition: state.cameraPosition,
     cameraQuaternion: state.cameraQuaternion,
     worldPosition: state.worldPosition,
@@ -38,6 +45,9 @@ export default class SceneComponent extends Component {
     this._onManualRenderTriggerCreated = (renderTrigger) => {
       this._renderTrigger = renderTrigger
     }
+    this.storeInstance = getStore()
+    this.onResizeListener = this._onResize.bind(this)
+    window.addEventListener('resize', this.onResizeListener)
   }
 
   _init(autoRender){
@@ -76,6 +86,14 @@ export default class SceneComponent extends Component {
     this._orbitControls.removeEventListener('change', this._orbitControlsHandler, false)
     this._canvas.removeEventListener('mouseup', this._mouseUpListener, false)
     this._orbitControls.dispose()
+    window.removeEventListener('resize', this.onResizeListener)
+  }
+
+  _onResize(e){
+    this.props.dispatch(resize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    }))
   }
 
   _onMouseUp(e){
@@ -97,8 +115,8 @@ export default class SceneComponent extends Component {
       <React3
         ref="react3"
         mainCamera="camera"
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={this.props.sceneWidth}
+        height={this.props.sceneHeight}
         antialias
         shadowMapEnabled={true}
         clearColor={0xffffff}
@@ -129,7 +147,9 @@ export default class SceneComponent extends Component {
             position={new THREE.Vector3(0, 0, 60)}
           />
 
-          {this.props.children}
+          <World store={this.storeInstance}>
+            <Minecraft store={this.storeInstance}/>
+          </World>
 
         </scene>
       </React3>

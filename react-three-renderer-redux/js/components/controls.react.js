@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import Slider from '../containers/slider_container';
-import * as types from '../constants/action_types';
+import React, {Component} from 'react'
+import Slider from '../containers/slider_container'
+import * as types from '../constants/action_types'
 
 export default class Controls extends Component{
 
-  static displayName = 'Controls';
+  static displayName = 'Controls'
 
   constructor(props){
-    super(props);
+    super(props)
   }
 
   render(){
@@ -48,6 +48,6 @@ export default class Controls extends Component{
           />
         </div>
       </div>
-    );
+    )
   }
 }

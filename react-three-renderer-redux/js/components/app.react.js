@@ -1,11 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import * as actions from '../actions'
 import Controls from '../components/controls.react'
 import Stats from '../components/stats.react'
 import Scene3D from '../containers/scene.react'
-import World from '../containers/world.react'
-import Minecraft from '../containers/minecraft.react'
+// import World from '../containers/world.react'
+// import Minecraft from '../containers/minecraft.react'
 
 
 export default class App extends React.Component{
@@ -16,25 +14,30 @@ export default class App extends React.Component{
     super(props)
   }
 
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
   render(){
     return(
       <div>
         <Controls/>
-        <Scene3D store={this.props.store}>
+        <Scene3D/>
+        <Stats/>
+      </div>
+    )
+  }
+/*
+  render(){
+    return(
+      <div>
+        <Controls/>
+        <Scene3D>
           <World store={this.props.store}>
             <Minecraft store={this.props.store}/>
           </World>
         </Scene3D>
-        <Stats />
+        <Stats/>
       </div>
     )
   }
+*/
 }
 
 App.propTypes = {}

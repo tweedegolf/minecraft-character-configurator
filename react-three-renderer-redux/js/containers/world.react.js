@@ -1,8 +1,8 @@
-import THREE from 'three';
-import React, {Component, PropTypes}from 'react';
+import THREE from 'three'
+import React, {Component, PropTypes}from 'react'
 import ReactDOM from 'react-dom'
 import React3 from 'react-three-renderer'
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 
 
 const mapStateToProps = function(state){
@@ -10,9 +10,15 @@ const mapStateToProps = function(state){
     position: state.worldPosition,
     quaternion: state.worldRotation
   }
-};
+}
 
-@connect(mapStateToProps)
+const mapDispatchToProps = function(dispatch){
+  return {
+    dispatch
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class World extends Component{
 
   static displayName = 'World'
@@ -48,11 +54,11 @@ export default class World extends Component{
         {this.props.children}
 
       </group>
-    );
+    )
   }
 }
 
 World.propTypes = {
   position: PropTypes.instanceOf(THREE.Vector3),
   quaternion: PropTypes.instanceOf(THREE.Quaternion)
-};
+}
