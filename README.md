@@ -4,7 +4,7 @@ There are 3 versions of the configurator: one made with [react-three](https://gi
 
 In react-three-renderer Three.js' render method is called every animation frame by default; the third version shows you how you can disable automatic rendering in react-three-renderer and call Threejs' render method only when the component has been updated.
 
-Check the [live examples](http://data.tweedegolf.nl/minecraft/) to see how this works.
+Check the [live examples](http://tweedegolf.github.io/minecraft-character-configurator/) to see how this works.
 
 ### Installation
 
