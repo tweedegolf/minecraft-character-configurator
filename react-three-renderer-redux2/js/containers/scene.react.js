@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import React3 from 'react-three-renderer'
 import {updateCamera, resize} from '../actions'
 import OrbitControls from '../../lib/OrbitControls'
-//import getStore from '../stores/configure_store' // singleton
+import getStore from '../stores/configure_store' // singleton
 import World from '../containers/world.react'
 import Minecraft from '../containers/minecraft.react'
 

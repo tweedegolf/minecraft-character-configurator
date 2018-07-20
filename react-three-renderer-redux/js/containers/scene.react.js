@@ -38,7 +38,6 @@ export default class SceneComponent extends Component {
 
   constructor(props) {
     super(props)
-    //this.storeInstance = props.store
     this.storeInstance = getStore()
     this.onResizeListener = this._onResize.bind(this)
   }
@@ -48,6 +47,7 @@ export default class SceneComponent extends Component {
   }
 
   componentDidMount(){
+    //this.storeInstance = this.context.store -> too late
     this._canvas = ReactDOM.findDOMNode(this.refs.react3)
     this._camera = this.refs.camera
     this._orbitControls = new THREE.OrbitControls(this._camera, this._canvas)
